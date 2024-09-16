@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smsrs-reservation-backend
+  namespace: backend
+  labels:
+    app: smsrs-reservation-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: smsrs-reservation-backend
+  template:
+    metadata:
+      labels:
+        app: smsrs-reservation-backend
+    spec:
+      containers:
+      - name: smsrs-reservation-backend
+        image: khantki/smsrs-reservation-backend-service:linux
+        ports:
+        - containerPort: 3100
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smsrs-reservation-backend
+  namespace: backend
+spec:
+  selector:
+    app: smsrs-reservation-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3100
+  type: ClusterIP  

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smsrs-frontend
+  namespace: frontend
+  labels:
+    app: smsrs-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: smsrs-frontend
+  template:
+    metadata:
+      labels:
+        app: smsrs-frontend
+    spec:
+      containers:
+      - name: smsrs-frontend
+        image: khantki/smsrs-frontend:linux  # Use the specific tag if needed
+        ports:
+        - containerPort: 80
+        # Ensure the frontend is configured to connect to the backend service
+        env:
+        - name: BACKEND_URL
+          value: "http://smsrs-reservation-backend.backend"  # The DNS name of the backend service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smsrs-frontend
+  namespace: frontend
+spec:
+  selector:
+    app: smsrs-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer  
