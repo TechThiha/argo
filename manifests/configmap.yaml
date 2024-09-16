@@ -1,6 +1,0 @@
-# apiVersion: v1
-# kind: configmap
-# metadata:
-#   name: front_configmap
-# data:
-#   RESERVATION_API: http://smsrs-reservation-backend.backend
