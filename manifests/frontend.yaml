@@ -20,9 +20,9 @@ spec:
         image: khantki/smsrs-frontend:linux  # Ensure the correct image tag
         ports:
         - containerPort: 80
-        env:
-        - name: RESERVATION_API
-          value: http://smsrs-reservation-backend.backend.svc.cluster.local  # Correct DNS format
+        envFrom:
+        - configMapRef:
+            name: my-config
 ---
 apiVersion: v1
 kind: Service
