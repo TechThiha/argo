@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: smsrs-frontend
-  namespace: frontend
+  namespace: frontend  # Ensure this matches the namespace of your ConfigMap
   labels:
     app: smsrs-frontend
 spec:
@@ -16,8 +16,8 @@ spec:
         app: smsrs-frontend
     spec:
       containers:
-      - name: frontend-container  # Added name field for the container
-        image: khantki/smsrs-frontend:linux  # Ensure the correct image tag
+      - name: frontend-container
+        image: khantki/smsrs-frontend:linux
         ports:
         - containerPort: 80
         envFrom:
