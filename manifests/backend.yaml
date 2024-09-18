@@ -42,22 +42,19 @@ spec:
       targetPort: 3100
   type: ClusterIP  
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: smsrs-reservation-backend-hpa
-  namespace: backend
+  creationTimestamp: null
+  name: smsrs-reservation-backend
 spec:
+  maxReplicas: 6
+  minReplicas: 3
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: smsrs-reservation-backend
-  minReplicas: 3
-  maxReplicas: 6
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 75
+  targetCPUUtilizationPercentage: 75
+status:
+  currentReplicas: 0
+  desiredReplicas: 0

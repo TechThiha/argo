@@ -45,22 +45,20 @@ spec:
       targetPort: 3000  # Ensure targetPort matches containerPort
   type: LoadBalancer  # Expose service externally, if needed
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: smsrs-frontend-hpa
-  namespace: frontend
+  creationTimestamp: null
+  name: smsrs-frontend
 spec:
+  maxReplicas: 6
+  minReplicas: 3
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: smsrs-frontend
-  minReplicas: 3
-  maxReplicas: 6
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 75
+  targetCPUUtilizationPercentage: 75
+status:
+  currentReplicas: 0
+  desiredReplicas: 0
+
