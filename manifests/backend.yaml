@@ -47,6 +47,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   creationTimestamp: null
   name: smsrs-reservation-backend
+  namespace: backend
 spec:
   maxReplicas: 6
   minReplicas: 3

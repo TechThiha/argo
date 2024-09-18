@@ -50,6 +50,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   creationTimestamp: null
   name: smsrs-frontend
+  namespace: frontend
 spec:
   maxReplicas: 6
   minReplicas: 3
