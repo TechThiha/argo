@@ -55,6 +55,3 @@ spec:
     kind: Deployment
     name: smsrs-reservation-backend
   targetCPUUtilizationPercentage: 75
-status:
-  currentReplicas: 0
-  desiredReplicas: 0

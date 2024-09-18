@@ -58,6 +58,3 @@ spec:
     kind: Deployment
     name: smsrs-frontend
   targetCPUUtilizationPercentage: 75
-status:
-  currentReplicas: 0
-  desiredReplicas: 0
