@@ -61,4 +61,3 @@ spec:
 status:
   currentReplicas: 0
   desiredReplicas: 0
-
